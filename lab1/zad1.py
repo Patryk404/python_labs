@@ -1,4 +1,5 @@
-from time import 
+import time
+start_time = time.time()
 length = 48
 L = [None] * length
  
@@ -40,7 +41,7 @@ for x in unique_values:
     else: 
        print("Liczba " + str(x) + " pojawia sie "+ str(counter)+ " razy\n")
 
-print(unique(L))
 srednia = srednia/length
 print("mediana: " + str(mediana))
 print("srednia: " + str(srednia))
+print("--- %s seconds ---" %(time.time() - start_time))
