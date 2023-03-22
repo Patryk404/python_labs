@@ -14,7 +14,6 @@ else:
     start_time = time.time() 
     file = open('SJP.txt')
     sjp = file.read().splitlines()
-    # print(sjp)
     for word in sjp:
         if word == text: 
             correct_word = word

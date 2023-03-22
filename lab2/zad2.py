@@ -54,32 +54,64 @@ for i in range(len(new_array)):
 for element in new_array:
     element.set_lower_leters()
 
-# print_csv_array(new_array)
+array_to_delete=[] 
 
 # to do 6 point
+for element in new_array:   
+    id = element.get()[0]
+    string = element.get()[1]
+    res = re.findall(r'\w+',string)
+    for array_of_words in res:
+        # print(array_of_words) 
+        # print(len(array_of_words))
+        for i in range(len(array_of_words)-1): 
+            letter = ord(array_of_words[i])
+            letter += 1 
+            if ord(array_of_words[i+1]) == letter:
+                array_to_delete.append([id,array_of_words])
+ 
 
-# array_of_deleted = []
-# for element in new_array:   
-#     id = element.get()[0]
-#     string = element.get()[1]
-#     res = re.findall(r'\w+',string)
-#     print(res)
-#     for array_of_words in res:
-#         for i in range(len(array_of_words)): 
-#             word = array_of_words[i]
-#             for j in range(len(word)):
-#                 letter = ord(word[j])
-#                 letter += 1
-#                 print(letter)
-#                 try:
-#                     if letter == ord(word[j+1]):
-#                         array_of_words.pop(i)
-#                         array_of_deleted.append([id,word])
-#                 except IndexError:
-#                     pass
-#     # print(res)
+print(len(new_array))
+indexes = []
+for element in array_to_delete:
+    id = int(element[0])
+    exist=False
+    for index in indexes:
+        if index == id:
+            exist = True
+    if not exist:
+        indexes.append(id)
 
-# print(array_of_deleted)
+
+# to do this getting all list
+
+# for i in range(len(new_array)):
+#     id = int(new_array[i].get()[0])
+#     print(id)
+#     delete = False 
+#     for index in indexes:
+#         if id == index:
+#             delete = True
+#     if delete:
+#         new_array.remove(i)
+
+# for index in indexes:
+
+# for element in array_to_delete:
+#     id = int(element[0])
+#     # print(id)
+#     # print(new_array[id-1].get()[0]) 
+#     if new_array[id-1].get()[0] == id-1:
+#         print("Kaz balagane")
+#         # print(id)
+#         indexes.append(id-1)
+#         # new_array.pop(id-1)
+        
+# # print(new_array)
+# print(new_array
+
+print_csv_array(new_array)
+
 
     # for element2 in res:
     #     for i in range(len(element2)):
