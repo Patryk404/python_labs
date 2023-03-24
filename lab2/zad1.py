@@ -10,7 +10,7 @@ for element in arr:
     string += str(element)
 
 
-for i in range(len(string)):
+for i in range(len(string)): # we can use replace instead of this for
     if string[i] == "2" and string[i+1] == "1":
         changed_string +='X' 
         changed_string +='X'
