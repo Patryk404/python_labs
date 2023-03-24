@@ -56,14 +56,11 @@ for element in new_array:
 
 array_to_delete=[] 
 
-# to do 6 point
 for element in new_array:   
     id = element.get()[0]
     string = element.get()[1]
     res = re.findall(r'\w+',string)
     for array_of_words in res:
-        # print(array_of_words) 
-        # print(len(array_of_words))
         for i in range(len(array_of_words)-1): 
             letter = ord(array_of_words[i])
             letter += 1 
@@ -71,7 +68,8 @@ for element in new_array:
                 array_to_delete.append([id,array_of_words])
  
 
-print(len(new_array))
+print(array_to_delete)
+
 indexes = []
 for element in array_to_delete:
     id = int(element[0])
@@ -83,39 +81,24 @@ for element in array_to_delete:
         indexes.append(id)
 
 
-# to do this getting all list
-
-# for i in range(len(new_array)):
-#     id = int(new_array[i].get()[0])
-#     print(id)
-#     delete = False 
-#     for index in indexes:
-#         if id == index:
-#             delete = True
-#     if delete:
-#         new_array.remove(i)
-
-# for index in indexes:
-
-# for element in array_to_delete:
-#     id = int(element[0])
-#     # print(id)
-#     # print(new_array[id-1].get()[0]) 
-#     if new_array[id-1].get()[0] == id-1:
-#         print("Kaz balagane")
-#         # print(id)
-#         indexes.append(id-1)
-#         # new_array.pop(id-1)
-        
-# # print(new_array)
-# print(new_array
-
-print_csv_array(new_array)
+new_array_without_indexes = []
 
 
-    # for element2 in res:
-    #     for i in range(len(element2)):
-    #         letter = int(element2[i])
-    #         letter += 1
-    #         if letter == int(element2[i+1]):
-                
+for object in new_array:
+    id = object.get()[0]
+    exist = False
+    for index in indexes:
+        if id == index:
+            exist = True
+    if exist == False:
+        new_array_without_indexes.append(object)
+
+f = open("zadanie2_finished.csv","w")
+
+f.write("id,val\n")
+
+for object in new_array_without_indexes:
+    [id, val] = object.get()
+    f.write(str(id) + ","+ str(val)+"\n") 
+
+f.close()
