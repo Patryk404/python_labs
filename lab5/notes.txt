@@ -1,0 +1,7 @@
+Tak, w teorii jest możliwe, że algorytm Rabin-Karpa może być wolniejszy niż algorytm naiwny w niektórych przypadkach. Algorytm Rabin-Karpa jest oparty na haszowaniu, które może generować kolizje (tzn. różne ciągi znaków mogą dać ten sam hash). W przypadku wystąpienia kolizji, algorytm Rabin-Karpa musi wykonać dodatkowe porównania, aby potwierdzić dopasowanie wzorca.
+
+Algorytm naiwny, z drugiej strony, porównuje wzorzec z tekstem znak po znaku, bez żadnych operacji haszowania. Chociaż algorytm naiwny ma stałą złożoność czasową O(n * m), gdzie n jest długością tekstu, a m jest długością wzorca, może być szybszy w praktyce, jeśli występuje duża liczba kolizji w algorytmie Rabin-Karpa.
+
+Warto jednak zauważyć, że algorytm Rabin-Karpa ma potencjał do osiągnięcia optymalnej złożoności czasowej O(n + m) w przypadku, gdy kolizje są rzadkie. Dlatego w większości przypadków algorytm Rabin-Karpa jest szybszy niż algorytm naiwny, zwłaszcza dla dużych tekstów i wzorców.
+
+Ostateczna wydajność obu algorytmów zależy od wielu czynników, takich jak długość tekstu, długość wzorca, ilość kolizji, zastosowane metody haszowania i implementacja algorytmów. Przed dokonaniem ostatecznej oceny wydajności zawsze warto przeprowadzić badania empiryczne lub analizę teoretyczną dla konkretnych przypadków użycia.
