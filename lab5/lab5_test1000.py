@@ -46,8 +46,11 @@ def rabin_karp(word, arr):
         for j in range(len(arr[i]) - len(word) + 1):
             if rolling_hash.hash == word_hash.hash:
                 if rolling_hash.window_text() == word: 
-                    if arr[i+1][j] == 'B' and arr[i+2][j] == 'C':
-                        positions.append({"y": i,"x": j})
+                    temp = [arr[i][j],arr[i+1][j],arr[i+2][j]]
+                    letters = RollingHash(temp,len(temp))
+                    if letters.hash == word_hash.hash:
+                        if letters.window_text() == word:
+                            positions.append({"y": i,"x": j})
             rolling_hash.move_window()
 
     return positions
