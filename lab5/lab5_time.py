@@ -58,42 +58,6 @@ def rabin_karp(word, arr):
 
     return positions
 
-# def KarpRabin(matrix, pattern):
-#     size = len(matrix)
-#     base = 16
-#     patternHash = sum(ord(c) * (base **(len(pattern) - i - 1)) for i, c in enumerate(pattern))
-#     cords = []
-
-#     for i in range(size - len(pattern) + 1):
-#         row = matrix[i]
-#         rowHash = sum(ord(c) * (base **(len(pattern) - j - 1)) for j, c in enumerate(row[:len(pattern)]))
-
-#         if rowHash == patternHash:
-#             if row[j] == pattern[0] and row[j+1] == pattern[1] and row[j+2] == pattern[2]:
-#                 windowCol = [matrix[i + k][j] for k in range(len(pattern))]
-#                 windowHashCol = sum(ord(c) * (base  **(len(pattern) - k - 1)) for k, c in enumerate(windowCol))
-
-#                 if windowHashCol == patternHash:
-#                     if matrix[i][j] == pattern[0] and matrix[i+1][j] == pattern[1] and matrix[i+2][j] == pattern[2]:
-#                         cords.append((i, j))
-
-#         for j in range(1, size - len(pattern) + 1):
-#             rowHash = (rowHash - (ord(row[j - 1]) * (base ** (len(pattern) - 1)))) * base + ord(row[j + len(pattern) - 1])
-
-#             if rowHash == patternHash:
-#                 if row[j] == pattern[0] and row[j+1] == pattern[1] and row[j+2] == pattern[2]:
-#                     windowCol = [matrix[i + k][j] for k in range(len(pattern))]
-#                     windowHashCol = sum(ord(c) * (base ** (len(pattern) - k - 1)) for k, c in enumerate(windowCol))
-
-#                     if windowHashCol == patternHash:
-#                         if matrix[i][j] == pattern[0] and matrix[i+1][j] == pattern[1] and matrix[i+2][j] == pattern[2]:
-#                             cords.append((i, j))
-
-#     return cords
-
-
-
-
 with open('./patterns/1000_pattern.txt') as textFile: # 1000_pattern 
     lines =[line.split() for line in textFile]
 
@@ -151,8 +115,7 @@ if __name__ == "__main__":
     end_time = time.time()
     print("1000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    print(rabin_karp('ABC',arr_1000))
-    # KarpRabin(arr_1000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_1000))))
     end_time = time.time()
     print("1000 pattern rabin karp: "+str(end_time - start_time))
     
@@ -162,8 +125,7 @@ if __name__ == "__main__":
     end_time = time.time() 
     print("2000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    rabin_karp('ABC',arr_2000)
-    # KarpRabin(arr_2000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_2000))))
     end_time = time.time()
     print("2000 pattern rabin karp: "+str(end_time - start_time))
     
@@ -174,8 +136,7 @@ if __name__ == "__main__":
     end_time = time.time() 
     print("3000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    rabin_karp('ABC',arr_3000)
-    # KarpRabin(arr_3000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_3000))))
     end_time = time.time()
     print("3000 pattern rabin karp: "+str(end_time - start_time))
 
@@ -185,8 +146,7 @@ if __name__ == "__main__":
     end_time = time.time() 
     print("4000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    rabin_karp('ABC',arr_4000)
-    # KarpRabin(arr_4000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_4000))))
     end_time = time.time()
     print("4000 pattern rabin karp: "+str(end_time - start_time))
 
@@ -196,8 +156,7 @@ if __name__ == "__main__":
     end_time = time.time() 
     print("5000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    rabin_karp('ABC',arr_5000)
-    # KarpRabin(arr_5000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_5000))))
     end_time = time.time()
     print("5000 pattern rabin karp: "+str(end_time - start_time))
 
@@ -206,10 +165,10 @@ if __name__ == "__main__":
     end_time = time.time() 
     print("8000 pattern naive: "+str(end_time - start_time))
     start_time = time.time()
-    rabin_karp('ABC',arr_8000)
-    # KarpRabin(arr_8000,['A','B','C'])
+    print("number of occurrences: "+ str(len(rabin_karp('ABC',arr_8000))))
     end_time = time.time()
     print("8000 pattern rabin karp: "+str(end_time - start_time))
+    
 
 
 

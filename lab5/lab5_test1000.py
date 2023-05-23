@@ -71,6 +71,3 @@ def naive(arr):
 
 print(naive(arr))
 print(rabin_karp('ABC',arr))
-# print(rabin_karp(['A','B','C'],arr,20))
-
-# print(rabin_karp(['A','B','C'],arr,20)) s
