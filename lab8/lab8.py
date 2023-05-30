@@ -3,7 +3,6 @@ with open("./TSP.txt") as textFile:
     for line in textFile:
         lines = [line.split() for line in textFile]
 
-# print(lines)
 paths=[]
 for i in range(0,len(lines)-1):
     x1 = float(lines[i][1])
