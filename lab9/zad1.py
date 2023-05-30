@@ -1,4 +1,6 @@
 import numpy as np
+import itertools
+
 coords = []
 
 class Backpack:
@@ -48,9 +50,22 @@ class Item:
 
 
 def greedy_algorithm(backpack,items):
-    items.sort(key=lambda item: item.value,reverse = True)
-    for item in items:
+    temp_items = items
+    temp_items.sort(key=lambda item: item.value,reverse = True)
+    for item in temp_items:
         backpack.add_item(item)
+
+def brute_force_algorithm(backpack,items):
+    max_val = 0
+    print(len(items)-1)
+    for subset in itertools.permutations(items,len(items)):
+        temp_backpack = Backpack(backpack.height,backpack.width) 
+        for item in subset:
+            temp_backpack.add_item(item)
+        val = temp_backpack.get_value_of_items()
+        if val > max_val:
+            max_val = val
+    return max_val
 
 with open("./data/packages20.txt",'r') as file:
     for line in file:
@@ -65,11 +80,13 @@ items = []
 for cord in coords:
     items.append(Item(cord[0],cord[1],cord[2],cord[3]))
 
-backpack = Backpack(20,20)
+backpack1 = Backpack(20,20)
 
-greedy_algorithm(backpack,items)
-backpack.display_backpack()
-print(backpack.get_value_of_items())
+greedy_algorithm(backpack1,items)
+print(backpack1.get_value_of_items())
+
+backpack2 = Backpack(10,5)
+brute_force_algorithm(backpack2,items)
 # greedy(backpack,items)
 # backpack = Backpack(10,5)
 
