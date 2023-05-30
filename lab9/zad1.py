@@ -24,7 +24,7 @@ class Item:
 
 
 # greedy algorithm
-def  
+# def  greedy()
 
 with open("./data/packages20.txt",'r') as file:
     for line in file:
