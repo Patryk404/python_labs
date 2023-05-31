@@ -68,8 +68,7 @@ def eval(gene):
     return temp_backpack.get_value_of_backpack()
 
 def population_algorithm(items):
-
-    p = 100 # population size
+    p = 50 # population size
     pc = 0.2 # elite percentage
     pm = 0.01 # mutations
     ps = 0.05 # mutation severity
@@ -77,12 +76,13 @@ def population_algorithm(items):
     val = 0
     try:
         counter = 0
-        while True:
+        while counter < 500:
             counter += 1
             # generate random population
             for i in range(p-len(population)):
                 population.append(random.sample(items,k=len(items)))
- 
+
+
             # multicore eval
             pool = multiprocessing.Pool()
             result = pool.map(eval, population)
@@ -149,7 +149,6 @@ def population_algorithm(items):
                     # eval new genome
                     #population[m].append(eval(population[m]))
     except KeyboardInterrupt: 
-        print('\n')
         print(val)
         print(population[0])
         print(len(population[0]))
