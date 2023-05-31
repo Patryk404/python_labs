@@ -1,5 +1,7 @@
+
 import numpy as np
 import itertools
+import random
 
 coords = []
 
@@ -55,6 +57,86 @@ def greedy_algorithm(backpack,items):
     for item in temp_items:
         backpack.add_item(item)
 
+def population_algorithm(backpack,items):
+    def add_items(items):
+        for item in items:
+            backpack.add_item(item)
+        return backpack.get_value_of_items()
+    p = 100 # population size
+    pc = 0.2 # elite percentage
+    pm = 0.01 # mutations
+    ps = 0.05 # mutation severity
+    population = []
+    val = 0
+    try:
+        counter = 0
+        while True:
+            counter+=1
+            for i in range(p-len(population)):
+                population.append(random.sample(items,k=len(items)))
+        # multicore eval
+        pool = multiprocessing.Pool()
+        temp_backpack = Backpack(backpack.height,backpack.width)
+        result = pool.map(add_items,temp_backpack,population) # here is something not working
+        
+        for i in range(len(population)):
+            if not isinstance(population[i][-1], int):
+                population[i].append(result[i])
+        population.sort(key=lambda g: -g[-1])
+        print (counter, population[0][-1])
+        #breed
+        for i in range(round(p - 2 * pc * p)):
+            b = random.randint(0, pc * p - 1)
+            c = random.randint(pc * p, p - 2)
+            bc = []
+            iter_b = 0
+            iter_c = 0
+            for j in range(len(items)):
+                # randomize gene mixing
+                mixer = random.randint(0,1)
+                if mixer:
+                    while population[b][iter_b] in bc:
+                        iter_b += 1
+
+                    if iter_b <= len(items):
+                        bc.append(population[b][iter_b].copy())
+                    else:
+                        bc.append(population[c][iter_c].copy())
+                        
+                else:
+                    while population[c][iter_c] in bc:
+                        iter_c += 1
+
+                    if iter_c <= len(items):
+                        bc.append(population[c][iter_c].copy())
+                    else:
+                        bc.append(population[b][iter_b].copy())
+            population.append(bc)
+                
+        del population[round(pc * p):p]
+            # mutate
+        for i in range(round(pm * len(population))):
+            # pick entity to mutate
+            m = random.randint(0, len(population) - 1)
+            for j in range(round(ps * len(items))):
+                # pick two genes to swap
+                m1 = random.randint(0, len(items) - 1)
+                m2 = random.randint(0, len(items) - 1)
+                    
+                temp = population[m][m1].copy()
+                population[m][m1] = population[m][m2].copy()
+                population[m][m2] = temp
+                if isinstance(population[m][-1], int):
+                    del population[m][-1]
+                # eval new genome
+                #population[m].append(eval(population[m]))
+    except KeyboardInterrupt: 
+        print(val)
+        print(population[0])
+        print(len(population[0]))
+        print(len(population))
+
+
 def brute_force_algorithm(backpack,items):
     max_val = 0
     print(len(items)-1)
@@ -86,7 +168,9 @@ greedy_algorithm(backpack1,items)
 print(backpack1.get_value_of_items())
 
 backpack2 = Backpack(10,5)
-brute_force_algorithm(backpack2,items)
+# brute_force_algorithm(backpack2,items)
+population_algorithm(backpack2,items)
+
 # greedy(backpack,items)
 # backpack = Backpack(10,5)
 
