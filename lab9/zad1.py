@@ -2,6 +2,7 @@
 import numpy as np
 import itertools
 import random
+import multiprocessing
 
 coords = []
 
@@ -58,10 +59,10 @@ def greedy_algorithm(backpack,items):
         backpack.add_item(item)
 
 def population_algorithm(backpack,items):
-    def add_items(items):
+    def add_items(backpack1,items):
         for item in items:
-            backpack.add_item(item)
-        return backpack.get_value_of_items()
+            backpack1.add_item(item)
+        return backpack1.get_value_of_items()
     p = 100 # population size
     pc = 0.2 # elite percentage
     pm = 0.01 # mutations
