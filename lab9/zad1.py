@@ -1,10 +1,16 @@
 
 import numpy as np
+<<<<<<< HEAD
 import time
 import random
 import multiprocessing
 import matplotlib.pyplot as plt
 
+=======
+import itertools
+import random
+import multiprocessing
+>>>>>>> 402c09cb1a3db8727d1421edba6149209dddb63f
 
 coords = []
 
@@ -13,6 +19,10 @@ class Backpack:
         self.width = int(width)
         self.height = int(height) 
         self.field = np.zeros((self.width,self.height))
+<<<<<<< HEAD
+=======
+        self.items = []
+>>>>>>> 402c09cb1a3db8727d1421edba6149209dddb63f
         self.value = 0 
     def add_item(self,item):
         item_width,item_height = item.height,item.width
