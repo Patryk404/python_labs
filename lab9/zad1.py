@@ -1,10 +1,8 @@
-
 import numpy as np
 import time
 import random
 import multiprocessing
 import matplotlib.pyplot as plt
-
 
 coords = []
 
@@ -182,7 +180,7 @@ if __name__ =="__main__":
     for cord in coords:
         items.append(Item(cord[0],cord[1],cord[2],cord[3]))
 
-    backpack1 = Backpack(10,10)
+    backpack1 = Backpack(20,20)
 
     start_time = time.time()
     greedy_algorithm(backpack1,items)  
@@ -192,7 +190,7 @@ if __name__ =="__main__":
     print("Greedy Algorithm Backpack Content:")
     backpack1.display_backpack()
 
-    backpack2 = Backpack(10,10)
+    backpack2 = Backpack(20,20)
 
     start_time = time.time()
     optimal_set_of_items,value,data_for_chart = population_algorithm(backpack2,items) 
@@ -204,10 +202,23 @@ if __name__ =="__main__":
     backpack2.display_backpack() 
     display_chart(data_for_chart)
     
-
-    
-    backpack3 = Backpack(10,10)
+    backpack3 = Backpack(100,100)
+    coords = [] 
+    items = []
     with open("./data/packages100.txt",'r') as file:
         for line in file:
             line = line.strip().split('\n') 
             coords.append(line[0].split(','))
+    coords.pop(0)
+    coords.pop(0)
+    for cord in coords:
+        items.append(Item(cord[0],cord[1],cord[2],cord[3]))
+    start_time = time.time()
+    optimal_set_of_items,value,data_for_chart = population_algorithm(backpack3,items,True) 
+    end_time = time.time()
+    print("Population Algorithm time to execute for 100 elements: " + str(end_time-start_time)) 
+    print("Population Algorithm Value for 100 elements: " + str(value))
+    print("Population Algorithm Backpack Content for 100 elements: ")
+    backpack3.add_items(optimal_set_of_items) 
+    backpack3.display_backpack()  
+    display_chart(data_for_chart)
